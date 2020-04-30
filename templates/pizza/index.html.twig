@@ -20,8 +20,39 @@
             {% for pizza in pizzas %}
                 <tr>
                     <th>{{ pizza.id }}</th>
+                    <td>{{ pizza.name }}</td>
+                    <td>{{ pizza.description }}</td>
+                    <td>{{ pizza.sprice }}</td>
+                    <td>{{ pizza.mprice }}</td>
+                    <td>{{ pizza.lprice }}</td>
+                    {% if pizza.papryczki != 0 %}
+                    <td class="pepper"> {{ pizza.papryczki }} </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td>
+                        <button type="button" class="btn btn-primary mb-1" href="/pizza/{{ pizza.id }}">Edytuj</button>
+                        <button type="button" class="btn btn-danger" href="/pizza/{{ pizza.id }}">Usuń</button>
+                    </td>
                 </tr>
             {% endfor%}
         </tbody>
     </table>
 {% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    var pepper = document.getElementsByClassName("pepper");
+
+    for(var i = 0; i<pepper.length; i++){
+        var amount = pepper[i].innerHTML;
+        pepper[i].innerHTML = "";
+        for(var j = 0; j < amount; j++)
+            pepper[i].innerHTML += "<i class=\"fas fa-pepper-hot text-danger\"></i>";
+    }
+});
+</script>
+{% endblock %}
+

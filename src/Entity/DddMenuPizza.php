@@ -92,9 +92,9 @@ class DddMenuPizza
     private $part = '\'\'';
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="papryczki", type="boolean", nullable=false)
+     * @ORM\Column(name="papryczki", type="integer", nullable=false)
      */
     private $papryczki = '0';
 
@@ -223,7 +223,7 @@ class DddMenuPizza
         return $this;
     }
 
-    public function getPapryczki(): ?bool
+    public function getPapryczki(): ?int
     {
         return $this->papryczki;
     }
