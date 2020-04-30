@@ -17,16 +17,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% for pizza in pizzas %}
+                <tr>
+                    <th>{{ pizza.id }}</th>
+                </tr>
+            {% endfor%}
         </tbody>
     </table>
 {% endblock %}
