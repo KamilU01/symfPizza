@@ -8,16 +8,17 @@ use Doctrine\ORM\Mapping as ORM;
  * DddMenuPizzaGroups
  *
  * @ORM\Table(name="ddd_menu_pizza_groups")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\DddMenuPizzaGroupsRepository")
  */
 class DddMenuPizzaGroups
 {
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="id", type="boolean", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToMany(targetEntity="DddMenuPizza", mappedBy="groupid")
      */
     private $id;
 
@@ -56,7 +57,7 @@ class DddMenuPizzaGroups
      */
     private $kol = '0';
 
-    public function getId(): ?bool
+    public function getId(): ?int
     {
         return $this->id;
     }

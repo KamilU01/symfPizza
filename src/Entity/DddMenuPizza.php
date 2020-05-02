@@ -25,43 +25,44 @@ class DddMenuPizza
      * @var int|null
      *
      * @ORM\Column(name="groupid", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\ManyToOne(targetEntity=DddMenuPizzaGroups, inversedBy="id")
      */
-    private $groupid = 'NULL';
+    private $groupid;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="name", type="string", length=64, nullable=true, options={"default"="NULL"})
      */
-    private $name = 'NULL';
+    private $name;
 
     /**
      * @var float|null
      *
      * @ORM\Column(name="sprice", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $sprice = 'NULL';
+    private $sprice;
 
     /**
      * @var float|null
      *
      * @ORM\Column(name="mprice", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $mprice = 'NULL';
+    private $mprice;
 
     /**
      * @var float|null
      *
      * @ORM\Column(name="lprice", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $lprice = 'NULL';
+    private $lprice;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=true, options={"default"="NULL"})
      */
-    private $description = 'NULL';
+    private $description;
 
     /**
      * @var bool
@@ -96,7 +97,7 @@ class DddMenuPizza
      *
      * @ORM\Column(name="papryczki", type="integer", nullable=false)
      */
-    private $papryczki = '0';
+    private $papryczki = "0";
 
     public function getId(): ?int
     {
@@ -126,7 +127,7 @@ class DddMenuPizza
 
         return $this;
     }
-
+    
     public function getSprice(): ?float
     {
         return $this->sprice;
@@ -228,7 +229,7 @@ class DddMenuPizza
         return $this->papryczki;
     }
 
-    public function setPapryczki(bool $papryczki): self
+    public function setPapryczki(int $papryczki): self
     {
         $this->papryczki = $papryczki;
 

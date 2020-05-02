@@ -3,7 +3,7 @@
 {% block title %}Pizza{% endblock %}
 
 {% block body %}
-    <table class="table table-striped">
+    <table class="table table-striped" id="pizzas">
         <thead>
             <tr>
                 <th>ID</th>
@@ -25,34 +25,18 @@
                     <td>{{ pizza.sprice }}</td>
                     <td>{{ pizza.mprice }}</td>
                     <td>{{ pizza.lprice }}</td>
-                    {% if pizza.papryczki != 0 %}
                     <td class="pepper"> {{ pizza.papryczki }} </td>
-                    {% else %}
-                    <td></td>
-                    {% endif %}
                     <td>
-                        <button type="button" class="btn btn-primary mb-1" href="/pizza/{{ pizza.id }}">Edytuj</button>
-                        <button type="button" class="btn btn-danger" href="/pizza/{{ pizza.id }}">Usuń</button>
+                        <a href="/pizza/edit/{{ pizza.id }}"><button type="button" class="btn btn-primary mb-1">Edytuj</button></a>
+                        <button type="button" class="btn btn-danger delete-pizza" href="#" data-id="{{ pizza.id }}">Usuń</button>
                     </td>
                 </tr>
-            {% endfor%}
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
 
 {% block javascripts %}
-<script type="text/javascript">
-
-window.addEventListener('DOMContentLoaded', (event) => {
-    var pepper = document.getElementsByClassName("pepper");
-
-    for(var i = 0; i<pepper.length; i++){
-        var amount = pepper[i].innerHTML;
-        pepper[i].innerHTML = "";
-        for(var j = 0; j < amount; j++)
-            pepper[i].innerHTML += "<i class=\"fas fa-pepper-hot text-danger\"></i>";
-    }
-});
-</script>
+<script src = "/js/main.js"></script>
 {% endblock %}
 

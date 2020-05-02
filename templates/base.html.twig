@@ -9,8 +9,13 @@
     </head>
     <body>
         {{ include ('inc/navbar.html.twig') }}
-        
+
          <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
              {% block body %}{% endblock %}
          </div>
         
