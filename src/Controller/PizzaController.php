@@ -45,10 +45,14 @@ class PizzaController extends AbstractController {
         ->add('name', TextType::class, array('label' => 'Nazwa pizzy:', 'attr' => array('class' => 'form-control')))
         ->add('description', TextareaType::class, array('label' => 'Składniki:', 'attr' => array('class' => 'form-control')))
         ->add('groupid', EntityType::class, [
-            'label' => 'Kategoria',
             'class' => DddMenuPizzaGroups::class,
-            'choice_value' => 'id',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('g')
+                    ->innerJoin(DddMenuPizza::class, 'p', 'p.groupid = g.id');  
+            },
             'choice_label' => 'name',
+            'choice_value' => 'id',
+            'label' => 'Kategoria',
             'attr' => array('class' => 'form-control col-md-3')
         ])
         ->add('sprice', NumberType::class, array('label' => 'Cena małej pizzy:', 'html5' => true, 'property_path' => 'sprice', 'attr' => array('class' => 'form-control col-md-3', 'min' => 0, 'step' => 0.01)))

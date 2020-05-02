@@ -3,7 +3,7 @@
 {% block title %}Pizza{% endblock %}
 
 {% block body %}
-    <table class="table table-striped" id="pizzas">
+    <table class="table mt-2" id="pizzas">
         <thead>
             <tr>
                 <th>ID</th>
@@ -13,13 +13,13 @@
                 <th>C.średnia</th>
                 <th>C.duża</th>
                 <th>Ostrość</th>
-                <th>Operacja</th>
+                <th class="sorter-false filter-false">Operacja</th>
             </tr>
         </thead>
         <tbody>
             {% for pizza in pizzas %}
                 <tr>
-                    <th>{{ pizza.id }}</th>
+                    <td><b>{{ pizza.id }}</b></td>
                     <td>{{ pizza.name }}</td>
                     <td>{{ pizza.description }}</td>
                     <td>{{ pizza.sprice }}</td>

@@ -25,7 +25,7 @@ class DddMenuPizza
      * @var int|null
      *
      * @ORM\Column(name="groupid", type="integer", nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity=DddMenuPizzaGroups, inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="DddMenuPizzaGroups", inversedBy="id")
      */
     private $groupid;
 
