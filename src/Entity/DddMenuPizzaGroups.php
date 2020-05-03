@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,7 +20,7 @@ class DddMenuPizzaGroups
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\OneToMany(targetEntity="DddMenuPizza", mappedBy="groupid")
+     * @ORM\OneToMany(targetEntity="App\Entity\DddMenuPizza", mappedBy="groupid")
      */
     private $id;
 
@@ -56,6 +58,16 @@ class DddMenuPizzaGroups
      * @ORM\Column(name="kol", type="integer", nullable=false)
      */
     private $kol = '0';
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
+
+    public function __construct()
+    {
+        $this->dddMenuPizzas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +133,4 @@ class DddMenuPizzaGroups
 
         return $this;
     }
-
-
 }

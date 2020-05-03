@@ -48,14 +48,4 @@ class DddMenuPizzaGroupsRepository extends ServiceEntityRepository
     }
     */
 
-    /**
-     * @return Groups[]
-     */
-    public function findGroups()
-    {
-        $query = $entityManager->createQuery(
-            'SELECT g.ig, g.name
-            FROM AppBundle:DddMenuPizzaGroups g'
-        );
-    }
 }

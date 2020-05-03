@@ -22,14 +22,6 @@ class DddMenuPizza
     private $id;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="groupid", type="integer", nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity="DddMenuPizzaGroups", inversedBy="id")
-     */
-    private $groupid;
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="name", type="string", length=64, nullable=true, options={"default"="NULL"})
@@ -99,21 +91,19 @@ class DddMenuPizza
      */
     private $papryczki = "0";
 
+    /**
+     * @var string
+     * @ORM\Column(name="groupid", type="string", options={"default"="NULL"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\DddMenuPizzaGroups", inversedBy="id")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $groupid;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getGroupid(): ?int
-    {
-        return $this->groupid;
-    }
-
-    public function setGroupid(?int $groupid): self
-    {
-        $this->groupid = $groupid;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -232,6 +222,18 @@ class DddMenuPizza
     public function setPapryczki(int $papryczki): self
     {
         $this->papryczki = $papryczki;
+
+        return $this;
+    }
+
+    public function getGroupid(): ?string
+    {
+        return $this->groupid;
+    }
+
+    public function setGroupid(string $groupid): self
+    {
+        $this->groupid = $groupid;
 
         return $this;
     }
