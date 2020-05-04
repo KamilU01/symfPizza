@@ -66,7 +66,7 @@ class DddMenuPizzaGroups
 
     public function __construct()
     {
-        $this->dddMenuPizzas = new ArrayCollection();
+        $this->id = new ArrayCollection();
     }
 
     public function getId(): ?int

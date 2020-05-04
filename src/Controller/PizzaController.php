@@ -40,7 +40,7 @@ class PizzaController extends AbstractController {
      */
     public function new(Request $request){
         $pizza = new DddMenuPizza();
-
+        
         $form = $this->createFormBuilder($pizza)
         ->add('name', TextType::class, array('label' => 'Nazwa pizzy:', 'attr' => array('class' => 'form-control')))
         ->add('description', TextareaType::class, array('label' => 'Składniki:', 'attr' => array('class' => 'form-control')))
@@ -79,10 +79,10 @@ class PizzaController extends AbstractController {
     }
 
     /**
-     * @Route("/pizza/edit/{id}", name="edit_article")
+     * @Route("/pizza/edit/{id}/{groupid}", name="edit_article")
      * Method({"GET", "POST"})
      */
-    public function edit(Request $request, $id){
+    public function edit(Request $request, $id, $groupid){
         $pizza = new DddMenuPizza();
         $pizza = $this->getDoctrine()->getRepository(DddMenuPizza::class)->find($id);
 
@@ -93,7 +93,6 @@ class PizzaController extends AbstractController {
             'class' => DddMenuPizzaGroups::class,
             'choice_label' => 'name',
             'choice_value' => 'id',
-            
             'label' => 'Kategoria',
             'attr' => array('class' => 'form-control col-md-3')
         ])

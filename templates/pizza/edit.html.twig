@@ -7,3 +7,13 @@
     {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}
+
+{% block javascripts %}
+<script>
+    $(document).ready(function(){
+    var str = window.location.pathname;
+    var num = str.substr(str.lastIndexOf("/")+1);
+    $("select option[value="+num+"]").prop("selected", true);
+});
+</script>
+{% endblock %}

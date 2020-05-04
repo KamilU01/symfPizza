@@ -27,7 +27,7 @@
                     <td>{{ pizza.lprice }}</td>
                     <td class="pepper"> {{ pizza.papryczki }} </td>
                     <td>
-                        <a href="/pizza/edit/{{ pizza.id }}"><button type="button" class="btn btn-primary mb-1">Edytuj</button></a>
+                        <a href="/pizza/edit/{{ pizza.id }}/{{ pizza.groupid}}"><button type="button" class="btn btn-primary mb-1">Edytuj</button></a>
                         <button type="button" class="btn btn-danger delete-pizza" href="#" data-id="{{ pizza.id }}">Usuń</button>
                     </td>
                 </tr>

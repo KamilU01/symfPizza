@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * DddMenuPizza
@@ -25,6 +26,7 @@ class DddMenuPizza
      * @var string|null
      *
      * @ORM\Column(name="name", type="string", length=64, nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank(message = "Pole nie może być puste")
      */
     private $name;
 
@@ -32,6 +34,8 @@ class DddMenuPizza
      * @var float|null
      *
      * @ORM\Column(name="sprice", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank(message = "Pole nie może być puste")
+     * @Assert\PositiveOrZero(message = "Wartość powinna być dodatnia lub równa zero")
      */
     private $sprice;
 
@@ -39,6 +43,9 @@ class DddMenuPizza
      * @var float|null
      *
      * @ORM\Column(name="mprice", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @Assert\GreaterThan(propertyPath="sprice", message = "Cena średniej pizzy powinna być większa od ceny pizzy małej!")
+     * @Assert\NotBlank(message = "Pole nie może być puste")
+     * @Assert\PositiveOrZero(message = "Wartość powinna być dodatnia lub równa zero")
      */
     private $mprice;
 
@@ -46,6 +53,9 @@ class DddMenuPizza
      * @var float|null
      *
      * @ORM\Column(name="lprice", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @Assert\GreaterThan(propertyPath="mprice", message = "Cena dużej pizzy powinna być większa od ceny pizzy średniej!")
+     * @Assert\NotBlank(message = "Pole nie może być puste")
+     * @Assert\PositiveOrZero(message = "Wartość powinna być dodatnia lub równa zero")
      */
     private $lprice;
 
@@ -53,6 +63,7 @@ class DddMenuPizza
      * @var string|null
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=true, options={"default"="NULL"})
+     * @Assert\NotBlank(message = "Pole nie może być puste")
      */
     private $description;
 
@@ -88,6 +99,12 @@ class DddMenuPizza
      * @var int
      *
      * @ORM\Column(name="papryczki", type="integer", nullable=false)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 4,
+     *      minMessage = "Minimalna wartość dla ostrości: {{ limit }}",
+     *      maxMessage = "Maksymalna wartość dla ostrości: {{ limit }}"
+     * )
      */
     private $papryczki = "0";
 
@@ -231,7 +248,7 @@ class DddMenuPizza
         return $this->groupid;
     }
 
-    public function setGroupid(string $groupid): self
+    public function setGroupid(?DddMenuPizzaGroups $groupid): self
     {
         $this->groupid = $groupid;
 
