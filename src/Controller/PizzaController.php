@@ -82,7 +82,7 @@ class PizzaController extends AbstractController {
      * @Route("/pizza/edit/{id}/{groupid}", name="edit_article")
      * Method({"GET", "POST"})
      */
-    public function edit(Request $request, $id, $groupid){
+    public function edit(Request $request, $id){
         $pizza = new DddMenuPizza();
         $pizza = $this->getDoctrine()->getRepository(DddMenuPizza::class)->find($id);
 
